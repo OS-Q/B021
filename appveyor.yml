@@ -1,0 +1,18 @@
+build: off
+environment:
+
+  matrix:
+    - PLATFORMIO_PROJECT_DIR: "project/blinker"
+    - PLATFORMIO_PROJECT_DIR: "project/timer"
+    - PLATFORMIO_PROJECT_DIR: "project/uart"
+    - PLATFORMIO_PROJECT_DIR: "project/i2c_master_tx_int"
+    - PLATFORMIO_PROJECT_DIR: "project/i2c_master_rx_bh1750fvi"
+install:
+  - cmd: git submodule update --init --recursive
+  - cmd: SET PATH=C:\Python36\Scripts;%PATH%
+  - cmd: pip3 install -U https://github.com/OS-Q/S03/archive/master.zip
+  - cmd: platformio platform install https://github.com/OS-Q/P02.git
+
+test_script:
+  - cmd: platformio run -s -d %PLATFORMIO_PROJECT_DIR%
+
