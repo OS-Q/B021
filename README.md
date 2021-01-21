@@ -6,5 +6,4 @@
 
 [B10](https://github.com/OS-Q/B10) 板级支持 [STM8S](https://github.com/SoCXin/STM8S)
 
-
 ### [Q = (OpenSource & OperatingSystem) ](http://www.OS-Q.com)
