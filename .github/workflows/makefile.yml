@@ -25,4 +25,4 @@ jobs:
 
     - name: make examples
       run: make
-      working-directory: project/bare/examples/ADC
+      working-directory: project/bare/examples/Flash

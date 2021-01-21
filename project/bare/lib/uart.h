@@ -19,10 +19,9 @@
  * PD5 -> TX
  * PD6 -> RX
  */
+
 void uart_init();
-
 void uart_write(uint8_t data);
-
 uint8_t uart_read();
 
 #endif /* UART_H */
