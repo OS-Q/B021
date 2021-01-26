@@ -23,6 +23,6 @@ jobs:
     - name: Install SDCC
       run: sudo apt-get install -y sdcc
 
-    - name: make examples
+    - name: make projects
       run: make
-      working-directory: project/bare/examples/Flash
+      working-directory: project/blinker/src
