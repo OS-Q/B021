@@ -1,10 +1,10 @@
-/**
- * SDCC - STM8 Example for UART Configuration.
- *
- * UART Settings: 115200 8N1
- * Clock: 16MHz INTOSC
- *
- **/
+/*******************************************************************************
+****版本：V1.0.0
+****平台：STM8S003
+****日期：2021-01-12
+****作者：Qitas
+****版权：OS-Q
+*******************************************************************************/
 
 #include <string.h>
 #include <stdint.h>
@@ -18,7 +18,8 @@
  *
  * @return bytes written.
  */
-int uart_puts(const char *s) {
+int uart_puts(const char *s)
+{
     uint8_t i;
     for(i = 0; i < strlen(s); i++) {
         while(!(UART1_SR & UART_SR_TXE));
@@ -31,7 +32,8 @@ int uart_puts(const char *s) {
 /**
  * Initialize UART with fixed settings: 115200 8N1
  */
-void uart_init() {
+void uart_init()
+{
     /* Configure RX and TX pins */
     PD_DDR = 0xBF;
     PD_CR1 = 0xFF;
@@ -44,3 +46,5 @@ void uart_init() {
     UART1_BRR2 = 0x0B;
     UART1_BRR1 = 0x08;
 }
+
+/*---------------------------(C) COPYRIGHT 2021 OS-Q -------------------------*/

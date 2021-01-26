@@ -1,3 +1,10 @@
+/*******************************************************************************
+****版本：V1.0.0
+****平台：STM8S003
+****日期：2021-01-12
+****作者：Qitas
+****版权：OS-Q
+*******************************************************************************/
 #include <stddef.h>
 #include "stm8s.h"
 #include "timer4.h"
@@ -9,7 +16,8 @@ volatile uint8_t *_t4_timeoutp;
  * Prescaler = 128, fMASTER = 16MHz, Counter = 125 => interrupt interval
  * is 1ms.
  */
-void timer4_init() {
+void timer4_init()
+{
     nointerrupts();
     // CK_PSC (internal fMASTER) is divided by the prescaler value.
     TIM4_PSCR = TIM4_PSCR_128;
@@ -32,15 +40,17 @@ void timer4_stop() {
     _t4_timeoutp = NULL;
 }
 
-void timer4_isr(void) __interrupt(INT_TIM4) {
+void timer4_isr(void) __interrupt(INT_TIM4)
+{
     if (*_t4_timeoutp > 0) {
         (*_t4_timeoutp)--;
     } else {
         timer4_stop();
     }
-
     // Clear interrupt flag
     TIM4_SR &= ~TIM4_SR_UIF;
     // Rewrite counter, calculated value is 125
     TIM4_CNTR = 0xFF - 128;
 }
+
+/*---------------------------(C) COPYRIGHT 2021 OS-Q -------------------------*/

@@ -329,7 +329,7 @@
 #define TIM_CR1_OPM (1 << 3)
 #define TIM_CR1_URS (1 << 2)
 #define TIM_CR1_UDIS (1 << 1)
-#define TIM_CR1_CEN (1 << 0)
+#define TIM_CR1_CEN     (1 << 0)
 
 #define TIM1_CR2_MMS2 (1 << 6)
 #define TIM1_CR2_MMS1 (1 << 5)
@@ -357,24 +357,24 @@
 #define TIM1_ETR_ETF0 (1 << 0)
 
 /* Timer Interrupt Enable bits */
-#define TIM1_IER_BIE (1 << 7)
-#define TIM1_IER_TIE (1 << 6)
-#define TIM1_IER_COMIE (1 << 5)
-#define TIM1_IER_CC4IE (1 << 4)
-#define TIM1_IER_CC3IE (1 << 3)
-#define TIM1_IER_CC2IE (1 << 2)
-#define TIM1_IER_CC1IE (1 << 1)
-#define TIM1_IER_UIE (1 << 0)
+#define TIM1_IER_BIE    (1 << 7)
+#define TIM1_IER_TIE    (1 << 6)
+#define TIM1_IER_COMIE  (1 << 5)
+#define TIM1_IER_CC4IE  (1 << 4)
+#define TIM1_IER_CC3IE  (1 << 3)
+#define TIM1_IER_CC2IE  (1 << 2)
+#define TIM1_IER_CC1IE  (1 << 1)
+#define TIM1_IER_UIE    (1 << 0)
 
 /* Timer Status Register bits */
-#define TIM1_SR1_BIF (1 << 7)
-#define TIM1_SR1_TIF (1 << 6)
-#define TIM1_SR1_COMIF (1 << 5)
-#define TIM1_SR1_CC4IF (1 << 4)
-#define TIM1_SR1_CC3IF (1 << 3)
-#define TIM1_SR1_CC2IF (1 << 2)
-#define TIM1_SR1_CC1IF (1 << 1)
-#define TIM1_SR1_UIF (1 << 0)
+#define TIM1_SR1_BIF    (1 << 7)
+#define TIM1_SR1_TIF    (1 << 6)
+#define TIM1_SR1_COMIF  (1 << 5)
+#define TIM1_SR1_CC4IF  (1 << 4)
+#define TIM1_SR1_CC3IF  (1 << 3)
+#define TIM1_SR1_CC2IF  (1 << 2)
+#define TIM1_SR1_CC1IF  (1 << 1)
+#define TIM1_SR1_UIF    (1 << 0)
 
 #define TIM1_SR2_CC4OF (1 << 4)
 #define TIM1_SR2_CC3OF (1 << 3)
@@ -382,14 +382,14 @@
 #define TIM1_SR2_CC1OF (1 << 1)
 
 /* Timer Event Generation Register bits */
-#define TIM1_EGR_BG (1 << 7)
-#define TIM1_EGR_TG (1 << 6)
-#define TIM1_EGR_COMG ( 1 << 5)
-#define TIM1_EGR_CC4G (1 << 4)
-#define TIM1_EGR_CC3G (1 << 3)
-#define TIM1_EGR_CC2G (1 << 2)
-#define TIM1_EGR_CC1G (1 << 1)
-#define TIM1_EGR_UG (1 << 0)
+#define TIM1_EGR_BG     (1 << 7)
+#define TIM1_EGR_TG     (1 << 6)
+#define TIM1_EGR_COMG   (1 << 5)
+#define TIM1_EGR_CC4G   (1 << 4)
+#define TIM1_EGR_CC3G   (1 << 3)
+#define TIM1_EGR_CC2G   (1 << 2)
+#define TIM1_EGR_CC1G   (1 << 1)
+#define TIM1_EGR_UG     (1 << 0)
 
 /* Capture/Compare Mode Register 1 - channel configured in output */
 #define TIM1_CCMR1_OC1CE (1 << 7)
@@ -505,11 +505,11 @@
 
 /* Timer 4 bitmasks */
 
-#define TIM4_CR1_ARPE (1 << 7)
-#define TIM4_CR1_OPM (1 << 3)
-#define TIM4_CR1_URS (1 << 2)
-#define TIM4_CR1_UDIS (1 << 1)
-#define TIM4_CR1_CEN (1 << 0)
+#define TIM4_CR1_ARPE   (1 << 7)
+#define TIM4_CR1_OPM    (1 << 3)
+#define TIM4_CR1_URS    (1 << 2)
+#define TIM4_CR1_UDIS   (1 << 1)
+#define TIM4_CR1_CEN    (1 << 0)
 
 #define TIM4_IER_UIE (1 << 0)
 
@@ -521,14 +521,14 @@
 #define TIM4_PSCR_PSC1 (1 << 1)
 #define TIM4_PSCR_PSC0 (1 << 0)
 
-#define TIM4_PSCR_1 0
-#define TIM4_PSCR_2 1
-#define TIM4_PSCR_4 2
-#define TIM4_PSCR_8 3
-#define TIM4_PSCR_16 4
-#define TIM4_PSCR_32 5
-#define TIM4_PSCR_64 6
-#define TIM4_PSCR_128 7
+#define TIM4_PSCR_1     0
+#define TIM4_PSCR_2     1
+#define TIM4_PSCR_4     2
+#define TIM4_PSCR_8     3
+#define TIM4_PSCR_16    4
+#define TIM4_PSCR_32    5
+#define TIM4_PSCR_64    6
+#define TIM4_PSCR_128   7
 
 /* ADC 1 */
 #define ADC_DB0RH *(volatile uint8_t*)0x53E0

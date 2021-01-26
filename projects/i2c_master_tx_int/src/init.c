@@ -23,7 +23,7 @@ void port_init()
 
     PB_ODR = 0x00;
     PB_DDR = 0xFF;
-    PB_CR1 = 0xCF;
+    PB_CR1 = 0xFF;
     PB_CR2 = 0x00;
 
     PC_ODR = 0x00;
@@ -106,6 +106,32 @@ void tim4_init(void)
     TIM4_CNTR = 0xFF - 125;
     TIM4_CR1 |= TIM4_CR1_CEN;
     interrupts();
+}
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：Initialize I2C at 100KHz standard mode.
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+void i2c_init(void)
+{
+    /* Disable I2C */
+    I2C_CR1 &= ~I2C_CR1_PE;
+    I2C_FREQR = 16;
+    /* Configure I2C clock */
+    I2C_CCRH = I2C_CCRH_16MHZ_STD_100;
+    I2C_CCRL = I2C_CCRL_16MHZ_STD_100;
+    I2C_TRISER = I2C_TRISER_16MHZ_STD_100;
+
+    /* Must always be written as 1 */
+    I2C_OARH |= I2C_OARH_ADDCONF;
+    /* 7-bit slave address */
+    I2C_OARH &= ~I2C_OARH_ADDMODE;
+
+    /* Enable I2C interrupts */
+    I2C_ITR |= (I2C_ITR_ITBUFEN|I2C_ITR_ITERREN|I2C_ITR_ITEVTEN);
+    /* Configuration ready, re-enable I2C */
+    I2C_CR1 |= I2C_CR1_PE;
 }
 
 /*******************************************************************************
