@@ -25,4 +25,6 @@ jobs:
 
     - name: make projects
       run: make
-      working-directory: project/blinker/src
+      working-directory:
+        projects/blink
+        projects/timer

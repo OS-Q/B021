@@ -2,11 +2,11 @@ build: off
 environment:
 
   matrix:
-    - PLATFORMIO_PROJECT_DIR: "project/blinker"
-    - PLATFORMIO_PROJECT_DIR: "project/timer"
-    - PLATFORMIO_PROJECT_DIR: "project/uart"
-    - PLATFORMIO_PROJECT_DIR: "project/i2c_master_tx_int"
-    - PLATFORMIO_PROJECT_DIR: "project/i2c_master_rx_bh1750fvi"
+    - PLATFORMIO_PROJECT_DIR: "projects/blinker"
+    - PLATFORMIO_PROJECT_DIR: "projects/timer"
+    - PLATFORMIO_PROJECT_DIR: "projects/uart"
+    - PLATFORMIO_PROJECT_DIR: "projects/i2c_master_tx_int"
+    - PLATFORMIO_PROJECT_DIR: "projects/i2c_master_rx_bh1750fvi"
 install:
   - cmd: git submodule update --init --recursive
   - cmd: SET PATH=C:\Python36\Scripts;%PATH%

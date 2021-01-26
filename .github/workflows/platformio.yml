@@ -8,13 +8,13 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: [3.7]
-        project:
-          - "project/blinker"
-          - "project/timer"
-          - "project/uart"
-          - "project/i2c_master_tx_int"
-          - "project/i2c_master_rx_bh1750fvi"
+        python-version: [3.8]
+        projects:
+          - "projects/blinker"
+          - "projects/timer"
+          - "projects/uart"
+          - "projects/i2c_master_tx_int"
+          - "projects/i2c_master_rx_bh1750fvi"
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -32,4 +32,4 @@ jobs:
           platformio platform install https://github.com/OS-Q/P02.git
       - name: Build B021
         run: |
-          platformio run -d ${{ matrix.project }}
+          platformio run -d ${{ matrix.projects }}
