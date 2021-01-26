@@ -1,11 +1,22 @@
+/*******************************************************************************
+****版本：V1.0.0
+****平台：STM8S003
+****日期：2021-01-12
+****作者：Qitas
+****版权：OS-Q
+*******************************************************************************/
+
 #include "stm8s.h"
 #include "init.h"
 
-/*
- * All unused pins are output in push-pull configuration,
- * low, interrupts disabled, speed slow (<= 2MHz)
- */
-void port_init() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+void port_init()
+{
     PA_ODR = 0x00;
     PA_DDR = 0xFF;
     PA_CR1 = 0xFF;
@@ -28,18 +39,24 @@ void port_init() {
     PD_CR2 = 0x00;
 }
 
-/**
- * Reconfigure System clock, use high speed internal oscillator,
- * disable prescaler.
- */
-void clk_init() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+
+void clk_init()
+{
     nointerrupts();
     CLK_ICKR = 0;
-    CLK_ICKR |= CLK_ICKR_HSIEN;
-    CLK_ECKR = 0;
-    CLK_SWR = CLK_SWR_HSI;
-    while (0 == (CLK_ICKR & CLK_ICKR_HSIRDY));
-    CLK_CKDIVR = 0;
+    CLK_ICKR |= CLK_ICKR_HSIEN; //开启内部HSI
+    // CLK_ECKR = 0;
+    CLK_SWR = CLK_SWR_HSI;      //HSI为主时钟源
+    CLK_CKDIVR=0x00;            //HSI不分频
+    while (0 == (CLK_ICKR & CLK_ICKR_HSIRDY)); //HSI准备就绪
+    // CLK_CKDIVR = 0;
+    // CLK_CKDIVR = (uint8_t)(~0x18);/*使能内部时钟*/
     CLK_PCKENR1 = 0xFF;
     CLK_PCKENR2 = 0xFF;
     CLK_CCOR = 0;
@@ -51,3 +68,21 @@ void clk_init() {
     while (0 != (CLK_SWCR & CLK_SWCR_SWBSY));
     interrupts();
 }
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+void delay_ms(unsigned int ms)
+{
+    unsigned char i;
+    while(ms!=0)
+    {
+        for(i=0;i<250;i++){}
+        for(i=0;i<75;i++){}
+        ms--;
+    }
+}
+
+/*---------------------------(C) COPYRIGHT 2021 OS-Q -------------------------*/

@@ -2,17 +2,20 @@ SDCC=sdcc
 SDLD=sdld
 LDFLAGS=--out-fmt-ihx
 
-ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-CFLAGS= -I ../include
+CFLAGS= -I ./include
+
 FLASH=stm8flash
 
+OBJ_DIR= ./src/
 OBJECTS=init.rel main.rel
+
 SYMBOLS=$(OBJECTS:.rel=.sym)
 ASMS=$(OBJECTS:.rel=.asm)
 LISTS=$(OBJECTS:.rel=.lst)
 RSTS=$(OBJECTS:.rel=.rst)
 
-TARGET=blinker.ihx
+TARGET=main.ihx
+OUTPUT=main.hex
 
 MAP=$(TARGET:.ihx=.map)
 LK=$(TARGET:.ihx=.lk)
@@ -23,16 +26,19 @@ PROGRAMMER=stlinkv2
 
 .PHONY: all clean flash
 
-all: $(TARGET)
+all: $(OUTPUT)
 
-flash: $(TARGET)
-	$(FLASH) -c $(PROGRAMMER) -p $(BOARD) -w $(TARGET)
-
-%.rel: %.c
+%.rel: $(OBJ_DIR)%.c
 	$(SDCC) -mstm8 -lstm8 $(CFLAGS) -c $<
 
 $(TARGET): $(OBJECTS)
 	$(SDCC) -mstm8 -lstm8 $(LDFLAGS) -o $@ $(OBJECTS)
+
+$(OUTPUT): $(TARGET)
+	packihx $(TARGET) > $(OUTPUT)
+
+flash: $(TARGET)
+	$(FLASH) -c $(PROGRAMMER) -p $(BOARD) -w $(TARGET)
 
 clean:
 	rm -f $(OBJECTS) $(SYMBOLS) $(ASMS) $(LISTS) $(RSTS)

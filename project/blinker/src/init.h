@@ -9,7 +9,7 @@
 }
 
 void port_init();
-
 void clk_init();
+void delay_ms(unsigned int ms);
 
 #endif /*__INIT_H*/

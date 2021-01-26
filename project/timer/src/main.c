@@ -8,10 +8,7 @@
 #include <stdint.h>
 #include "stm8s.h"
 
-/*
- * All unused pins are output in push-pull configuration,
- * low, interrupts disabled, speed slow (<= 2MHz)
- */
+
 /*******************************************************************************
 **函数信息 ：
 **功能描述 ：
