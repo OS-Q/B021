@@ -13,5 +13,4 @@ void main()
         PB_ODR ^= 0x20;
         __delay();
     }
-
 }

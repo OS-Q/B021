@@ -1,14 +1,19 @@
 SDCC=sdcc
 SDLD=sdld
 LDFLAGS=--out-fmt-ihx
-CFLAGS=
+
+ROOT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+CFLAGS= -I ../include
 FLASH=stm8flash
+
 OBJECTS=init.rel main.rel
 SYMBOLS=$(OBJECTS:.rel=.sym)
 ASMS=$(OBJECTS:.rel=.asm)
 LISTS=$(OBJECTS:.rel=.lst)
 RSTS=$(OBJECTS:.rel=.rst)
+
 TARGET=blinker.ihx
+
 MAP=$(TARGET:.ihx=.map)
 LK=$(TARGET:.ihx=.lk)
 CDB=$(TARGET:.ihx=.cdb)
