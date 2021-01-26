@@ -25,6 +25,5 @@ jobs:
 
     - name: make projects
       run: make
-      working-directory:
-        projects/blink
-        projects/timer
+      working-directory: projects/uart
+

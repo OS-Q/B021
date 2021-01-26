@@ -3,7 +3,7 @@ python:
   - "3.7"
 
 env:
-  - PLATFORMIO_PROJECT_DIR=projects/blinker
+  - PLATFORMIO_PROJECT_DIR=projects/blink
   - PLATFORMIO_PROJECT_DIR=projects/timer
   - PLATFORMIO_PROJECT_DIR=projects/uart
   - PLATFORMIO_PROJECT_DIR=projects/i2c_master_tx_int

@@ -10,7 +10,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: [3.8]
         projects:
-          - "projects/blinker"
+          - "projects/blink"
           - "projects/timer"
           - "projects/uart"
           - "projects/i2c_master_tx_int"
