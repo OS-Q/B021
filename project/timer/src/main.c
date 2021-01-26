@@ -1,3 +1,10 @@
+/*******************************************************************************
+****版本：V1.0.0
+****平台：STM8S003
+****日期：2021-01-12
+****作者：Qitas
+****版权：OS-Q
+*******************************************************************************/
 #include <stdint.h>
 #include "stm8s.h"
 
@@ -5,7 +12,14 @@
  * All unused pins are output in push-pull configuration,
  * low, interrupts disabled, speed slow (<= 2MHz)
  */
-inline static void port_init() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+inline static void port_init()
+{
     PA_ODR = 0x00;
     PA_DDR = 0xFF;
     PA_CR1 = 0xFF;
@@ -27,10 +41,12 @@ inline static void port_init() {
     PD_CR2 = 0x00;
 }
 
-/**
- * Reconfigure System clock, use high speed internal oscillator,
- * disable prescaler.
- */
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
 inline static void clk_init()
 {
     nointerrupts();
@@ -53,12 +69,14 @@ inline static void clk_init()
 }
 
 
-/**
- * Timer 4 is a simple 8-bit upcounting counter.
- * Prescaler = 128, fMASTER = 16MHz, Counter = 125 => interrupt interval
- * is 1ms.
- */
-static void timer4_init() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：Prescaler= 128,fMASTER = 16MHz,Counter = 125 => interrupt interval 1ms.
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+static void timer4_init()
+{
     // CK_PSC (internal fMASTER) is divided by the prescaler value.
     TIM4_PSCR = TIM4_PSCR_128;
     // Enable update interrupt for timer 4
@@ -72,7 +90,14 @@ static void timer4_init() {
     interrupts();
 }
 
-int main() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+int main()
+{
     port_init();
     clk_init();
     timer4_init();
@@ -82,6 +107,13 @@ int main() {
     }
 }
 
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+
 void timer4_isr(void) __interrupt(INT_TIM4) {
     // Blink led
     PB_ODR ^= 0x20;
@@ -90,3 +122,5 @@ void timer4_isr(void) __interrupt(INT_TIM4) {
     // Rewrite counter, calculated value is 125
     TIM4_CNTR = 0xFF - 123;
 }
+
+/*---------------------------(C) COPYRIGHT 2021 OS-Q -------------------------*/

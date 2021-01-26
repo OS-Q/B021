@@ -1,11 +1,10 @@
-/**
- * SDCC - STM8 Example for UART Configuration.
- *
- * UART Settings: 115200 8N1
- * Clock: 16MHz INTOSC
- *
- **/
-
+/*******************************************************************************
+****版本：V1.0.0
+****平台：STM8S003
+****日期：2021-01-12
+****作者：Qitas
+****版权：OS-Q
+*******************************************************************************/
 #include <string.h>
 #include <stdint.h>
 #include "stm8s.h"
@@ -13,15 +12,19 @@
 
 #define __delay() {\
     uint32_t i;\
-    for(i = 0; i < 4000000; i++) \
+    for(i = 0; i < 2000000; i++) \
         __asm nop __endasm;\
 }
 
-/*
- * All unused pins are output in push-pull configuration,
- * low, interrupts disabled, speed slow (<= 2MHz)
- */
-inline void port_init() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+
+inline void port_init()
+{
     PA_ODR = 0x00;
     PA_DDR = 0xFF;
     PA_CR1 = 0xFF;
@@ -43,11 +46,13 @@ inline void port_init() {
     PD_CR2 = 0x00;
 }
 
-/**
- * Reconfigure System clock, use high speed internal oscillator,
- * disable prescaler.
- */
-void system_clock_init()
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：Reconfigure System clock, use high speed internal oscillator
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+void clock_init()
 {
     nointerrupts();
     CLK_ICKR = 0;
@@ -68,13 +73,15 @@ void system_clock_init()
     interrupts();
 }
 
-/**
- * Write string to uart.
- * @param
- *
- * @return bytes written.
- */
-int uart_puts(const char *s) {
+
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+int uart_puts(const char *s)
+{
     uint8_t i;
     for(i = 0; i < strlen(s); i++) {
         while(!(UART1_SR & UART_SR_TXE));
@@ -84,10 +91,14 @@ int uart_puts(const char *s) {
     return(i);
 }
 
-/**
- * Initialize UART with fixed settings: 115200 8N1
- */
-void uart_init() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+void uart_init()
+{
     /* Configure RX and TX pins */
     PD_DDR = 0xBF;
     PD_CR1 = 0xFF;
@@ -101,13 +112,23 @@ void uart_init() {
     UART1_BRR1 = 0x08;
 }
 
-int main() {
+/*******************************************************************************
+**函数信息 ：
+**功能描述 ：
+**输入参数 ：
+**输出参数 ：
+*******************************************************************************/
+int main()
+{
     port_init();
-    system_clock_init();
+    clock_init();
     uart_init();
-
-    while(1) {
-        uart_puts("STM8S at 115200 baud. Welcome and keep up the good work!\r\n");
+    while(1)
+    {
+        PB_ODR ^= 0x20;
+        uart_puts("P02/STM8S003 UART baud 115200.It is running on B021!\r\n");
         __delay();
     }
 }
+
+/*---------------------------(C) COPYRIGHT 2021 OS-Q -------------------------*/
