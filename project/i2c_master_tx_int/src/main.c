@@ -2,11 +2,6 @@
 #include "stm8s.h"
 #include "pcf8574.h"
 
-/**
- * I2C Write example for STM8S with 7-bit address using interrupts.
- * ST8M master transfers a single byte to a PCF8574A I2C IO Expander.
- */
-
 /* Interrupt handler uses this to transfer data. */
 static volatile i2c_cmd_p _i2c_cmd_p;
 

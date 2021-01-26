@@ -3,7 +3,7 @@
 /* Clock output selection CCOSEL[3:0] */
 #define F_CPU_CCO 0b0100
 #define F_LSI_CCO 0b0001
-#define F_HSI_CCO 0b1011
+#define F_HSI_CCO 0B02111
 #define F_HSE_CCO 0b0010
 
 void main() {
